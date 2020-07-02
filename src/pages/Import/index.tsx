@@ -35,14 +35,13 @@ const Import: React.FC = () => {
       await api.post('/transactions/import', data);
 
       toast.success('Arquivo importado com sucesso!', {
-        autoClose: 2500,
+        autoClose: 2000,
         position: 'top-center',
       });
       setTimeout(() => {
         history.push('/');
-      }, 3000);
+      }, 2000);
     } catch (err) {
-      console.log(err.response.error);
       toast.error('Falha ao enviar o arquivo.');
     }
   }
@@ -58,7 +57,7 @@ const Import: React.FC = () => {
 
   return (
     <>
-      <Header size="small" />
+      <Header size="small" route="import" />
 
       <ToastContainer />
 
