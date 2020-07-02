@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import filesize from 'filesize';
 
@@ -25,13 +27,23 @@ const Import: React.FC = () => {
   async function handleUpload(): Promise<void> {
     const data = new FormData();
 
+    if (!uploadedFiles.length) return;
+
     data.append('file', uploadedFiles[0].file);
 
     try {
       await api.post('/transactions/import', data);
-      history.push('/');
+
+      toast.success('Arquivo importado com sucesso!', {
+        autoClose: 2500,
+        position: 'top-center',
+      });
+      setTimeout(() => {
+        history.push('/');
+      }, 3000);
     } catch (err) {
       console.log(err.response.error);
+      toast.error('Falha ao enviar o arquivo.');
     }
   }
 
@@ -47,6 +59,9 @@ const Import: React.FC = () => {
   return (
     <>
       <Header size="small" />
+
+      <ToastContainer />
+
       <Container>
         <Title>Importar uma transação</Title>
         <ImportFileContainer>
