@@ -46,7 +46,7 @@ No seu terminal digite os comandos:
 $ git clone https://github.com/julionery/challenge-07-fundamentos-reactjs.git
 
 # Vá para a pasta do back-end
-$ cd conceitos-nodejs-react-reactnative/challenge-07-fundamentos-reactjs/
+$ cd challenge-07-fundamentos-reactjs/
 
 # Instale as dependências
 $ yarn
